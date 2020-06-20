@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template, redirect,request,session,url_for,flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.models import User,db
-from middlewares.loggedin import is_Logged_in
+from middlewares.loggedin import loginrequired
 import json
 
 accounts = Blueprint("accounts", __name__)
 
 @accounts.route('/account', methods=['GET','POST'])
-@is_Logged_in
+@loginrequired
 def account():
     if request.method=='POST':
         username = request.form['username']

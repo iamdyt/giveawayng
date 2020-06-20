@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/materialize.min.css")}}">
     <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/giveaway.css")}}">  
-    <title> {% block title %}{% endblock %} </title>
+    <title> {% block title %}GiveawayNg{% endblock %} </title>
     
 </head>
 <body>
@@ -17,7 +17,7 @@
               <ul class="right hide-on-med-and-down mr-8" >
                 {% if session['username'] %}
                   <li><a href="/">Home</a></li>
-                  <li class="yellow lighten-2"><a href="mobile.html" style="color:#4C4981; font-weight: 500;"> Hi, {{session['username'] }}</a></li>
+                  <li class="yellow lighten-2"><a href="{{url_for('accounts.dashboard')}}" style="color:#4C4981; font-weight: 500;"> Hi, {{session['username'] }}</a></li>
                   <li class="yellow lighten-2" style="color:#4C4981; font-weight:bolder;" > &verbar; </li>
                   <li class="yellow lighten-2"><a href="{{url_for("accounts.logout") }}" style="color:#4C4981; font-weight: 500;"> Logout </a></li>
                 {% else %}

@@ -1,6 +1,20 @@
 {% extends "./layout.html" %}
 
+{% block title %} Dashboard {% endblock %}
 {% block body %}
-    <p>{{user.phone}}</p>
+    <section class="container " style="margin-top: 6rem;">
+        <div class="row card-panel">
+            <div class="col l3">
+                <div class="collection">
+                    <ul>
+                        <li class="collection-item"><a>All Benefits</a></li>
+                        <li class="collection-item"> <a href="">New Benefit</a></li>
+                        <li class="collection-item"> <a href="">User's Profile</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     
 {% endblock %}
