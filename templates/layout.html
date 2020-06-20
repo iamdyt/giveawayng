@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/materialize.min.css")}}">
+    <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/giveaway.css")}}">  
+    <title> {% block title %}{% endblock %} </title>
+    
+</head>
+<body>
+    <header>
+        <nav class="light-green darken-1 z-depth-0">
+            <div class="nav-wrapper" ">
+              <a href="/" class="ml-4" style="font-weight:400; font-size:1.3rem;">GiveawayNG</a>
+              <a href="#" data-target="mobile" class="sidenav-trigger">menu</a>
+              <ul class="right hide-on-med-and-down mr-8" >
+                <li><a href="/">Home</a></li>
+                <li><a href="badges.html">About</a></li>
+                <li><a href="collapsible.html">FAQ</a></li>
+                <li><a href="mobile.html">Membership</a></li>
+              </ul>
+            </div>
+          </nav>
+        
+          <ul class="sidenav show-on-small" id="mobile">
+            <li><a href="/">Home</a></li>
+            <li><a href="badges.html">About</a></li>
+            <li><a href="collapsible.html">FAQ</a></li>
+            <li><a href="mobile.html">Membership</a></li>
+          </ul>       
+    </header>
+
+    <main>
+        {% block banner %}{% endblock %}
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="{{url_for("static", filename="materialize/jquery.min.js")}}"></script>
+    <script src="{{url_for("static", filename="materialize/js/materialize.min.js")}}"></script>
+    <script>
+        $(()=>{
+            $('.sidenav').sidenav();
+            $('.counter').characterCounter();
+        })
+    </script>
+    {% block scripty %}{% endblock %}
+</body>
+</html>
