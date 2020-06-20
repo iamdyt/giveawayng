@@ -15,19 +15,30 @@
               <a href="/" class="ml-4" style="font-weight:400; font-size:1.3rem;">GiveawayNG</a>
               <a href="#" data-target="mobile" class="sidenav-trigger">menu</a>
               <ul class="right hide-on-med-and-down mr-8" >
-                <li><a href="/">Home</a></li>
-                <li><a href="badges.html">About</a></li>
-                <li><a href="collapsible.html">FAQ</a></li>
-                <li><a href="mobile.html">Membership</a></li>
+                {% if session['username'] %}
+                  <li><a href="/">Home</a></li>
+                  <li class="yellow lighten-2"><a href="mobile.html" style="color:#4C4981; font-weight: 500;"> Hi, {{session['username'] }}</a></li>
+                  <li class="yellow lighten-2" style="color:#4C4981; font-weight:bolder;" > &verbar; </li>
+                  <li class="yellow lighten-2"><a href="{{url_for("accounts.logout") }}" style="color:#4C4981; font-weight: 500;"> Logout </a></li>
+                {% else %}
+                  <li><a href="/">Home</a></li>
+                  <li><a href="badges.html">About</a></li>
+                  <li><a href="collapsible.html">FAQ</a></li>
+                  <li><a href="{{url_for("accounts.account")}}">Membership</a></li>
+                {% endif %}
               </ul>
             </div>
           </nav>
         
-          <ul class="sidenav show-on-small" id="mobile">
+          <ul class="sidenav " id="mobile">
             <li><a href="/">Home</a></li>
             <li><a href="badges.html">About</a></li>
             <li><a href="collapsible.html">FAQ</a></li>
+            {% if session['username'] %}
+              <li><a href="mobile.html">{{session['username']}}</a></li>
+            {% else %}
             <li><a href="mobile.html">Membership</a></li>
+            {% endif %}
           </ul>       
     </header>
 

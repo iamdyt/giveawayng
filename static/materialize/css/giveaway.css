@@ -1,6 +1,11 @@
-*{
-   font-face: url('{{url_for("static", filename="fonts/Montserrat-Regular.ttf")}}');
-   font-family: "Montserrat" sans-serif;
+@font-face{
+   font-family: "Montserrat";
+   src: url("../fonts/Montserrat/Montserrat-Regular.ttf");
+   
+}
+
+body{
+   font-family: "Montserrat", sans-serif !important;
 }
 .ml-4{ margin-left:4rem;}
 .mr-8{margin-right:8rem;}

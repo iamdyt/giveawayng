@@ -1,11 +1,13 @@
 from flask import Blueprint, render_template, redirect,request,session,url_for,flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.models import User,db
+from middlewares.loggedin import is_Logged_in
 import json
 
 accounts = Blueprint("accounts", __name__)
 
 @accounts.route('/account', methods=['GET','POST'])
+@is_Logged_in
 def account():
     if request.method=='POST':
         username = request.form['username']
@@ -41,6 +43,16 @@ def login():
 
 @accounts.route('/dashboard', methods=['GET'])
 def dashboard():
-    return render_template('account/dashboard.html')        
-       
-    
+    try:
+        if session['id']:
+            user = User.query.filter_by(id=session['id']).first()
+            if user:
+                return render_template('account/dashboard.html', user=user)
+    except KeyError:
+        return redirect(url_for('accounts.account'))
+
+@accounts.route("/logout", methods=['GET'])
+def logout():
+    session.pop('id')
+    session.pop('username')
+    return redirect('/')

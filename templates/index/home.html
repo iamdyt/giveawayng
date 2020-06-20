@@ -6,14 +6,24 @@
     <section class="light-green lighten-1 z-depth-1">
         
         <div class="row ml-4 mr-8 ">
-            <div class="col l5 m6 s12 white-text mt-4" style="text">
-                <h5 style="margin-top: 2rem;"><b>Every acts of kindness counts, your trash is someone's treasure.</b>  </h5>
-                <p style="text-align: justify; font-size: medium;">At the end it's not about what you have or even what you have accomplished. It's about who you have lifted up,who you have made better. It's about what you have given back. <br> Denzel Washingthon</p>
-                <a href="{{ url_for('accounts.account')}}" class="btn waves-effect waves-yellow" style="background-color:#4C4981;"> Become a Giver/Benefactor</a>
+            <div class="col l5 m6 s6 white-text mt-4" style="background-color:#4C4981;">
+                {% if session['username']%}
+                    <h4> Howdy, {{ session['username'] }} ! </h4>
+                    <p style="text-align: justify; font-size:larger;">At GiveawayNG, we believe little sacrifices of unused items from distinguished like you
+                    can go a long way to bless the needy, thereby making the world a better place, as it is said "What matter most is the number of lives we touch", this is our own way of 
+                    way of touching lives, we are very delighted to see you being part of us.
+                    </p>
+                {% else %}
+                    <h4> Hey, there ! </h4>
+                    <p style="text-align: justify; font-size:larger;">At GiveawayNG, we believe little sacrifices of unused items from distinguished people
+                    can go a long way to bless the needy, thereby making the world a better place, as it is said "What matter most is the number of lives we touch", this is our own way of 
+                    way of touching lives. Bless someone by becoming part of us, be blessed by exploring all the benefits below &downarrow;</p>
+                {% endif %}
+                
             </div>
-
-            <div class="col l6 offset-l1 m6 s4 yellow lighten-2 hide-on-small-only">
-                <img src="{{url_for("static", filename="images/svgs/giftboxtwo.svg")}}"  class=' hover responsive-img' alt="giveaway">
+            
+            <div class="col l6 offset-l1 m6 s6 yellow lighten-2">
+                <img src="{{url_for("static", filename="images/svgs/giftboxtwo.svg")}}"  class=' hoverable responsive-img' alt="giveaway">
             </div>
         </div>
     </section>
