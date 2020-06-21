@@ -2,8 +2,27 @@
 
 {% block title %} Dashboard {% endblock %}
 {% block body %}
-    <section class="container " style="margin-top: 6rem;">
+    <section class="container" style="margin-top: 3rem;">
+       
         <div class="row card-panel">
+            <div class="col l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ url_for( "static",filename='images/' )}}{{user.thumb}}" alt="{{user.username}}" class="responsive-img circle">
+                    </div>
+                    <div class="card-content">
+                        <p>{{user.username}}</p><div class="divider"></div>
+                        <small>{{user.email}}</small><div class="divider"></div>
+                        <p>{{user.phone}}</p><div class="divider"></div>
+                        <p>{{user.whatsapp}}</p>
+                    </div>
+                    <div class="card-action">
+                      <div class="center-align">
+                        <button class="btn waves-effect waves-light" style="background-color:#4C4981;">Edit Details</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
             <div class="col l3">
                 <div class="collection">
                     <ul>

@@ -2,7 +2,8 @@ from flask import Blueprint, render_template, redirect,request,session,url_for,f
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.models import User,db
 from middlewares.loggedin import loginrequired
-import json
+import os
+
 
 accounts = Blueprint("accounts", __name__)
 
@@ -14,7 +15,15 @@ def account():
         password = generate_password_hash(request.form['password'])
         email = request.form['email']
         phone= request.form['phone']
-        user = User(username=username,password=password,phone=phone,email=email)
+        image = request.files['image']
+        whatsapp = request.form['whatsapp']
+        ext =  str(image.content_type)
+        upload_dir = os.path.join(os.path.join(os.getcwd(), os.path.join('static','images')),str(image.filename).strip(''))
+        if ext == 'image/png' or  ext== 'image/jpg' or ext == 'image/jpeg':
+            image.save(upload_dir)
+        else:
+           pass
+        user = User(username=username,password=password,phone=phone,whatsapp=whatsapp,email=email,thumb=str(image.filename))
         db.session.add(user)
         db.session.commit()
         return redirect('/')
@@ -53,6 +62,7 @@ def dashboard():
 
 @accounts.route("/logout", methods=['GET'])
 def logout():
+    request.files
     session.pop('id')
     session.pop('username')
     return redirect('/')

@@ -8,11 +8,14 @@
             <!-- Sign Up -->
             <div class="col l6">
                 <h6>Register / Become a Benefactor</h6>
-                <form action="{{url_for("accounts.account")}}" method="POST">
+                <form action="{{url_for("accounts.account")}}" method="POST" enctype="multipart/form-data">
                     <label for="username"> USERNAME<input type="text" required maxlength="15" class=' validate input-field counter' name="username" data-length="15" placeholder="Enter username"></label>
                     <input type="email" class='input-field counter' required maxlength="25" name="email" data-length="25" placeholder="Valid E-mail">
-                    <input type="text" class='input-field' required maxlength="11" name="phone" placeholder="080XXXXXXXX">
+                    <input type="text" class='input-field' required maxlength="11" name="phone" placeholder="Mobile 080XXXXXXXX">
+                    <input type="text" class='input-field' required maxlength="11" name="whatsapp" placeholder="whatsapp Phone Number 080XXXXXXXX">
                     <input type="password" class='input-field' required name="password" placeholder="Password">
+                    <input type="file"  class="file-field input-field validate" name="image" required name="image" id="">
+                    <span> *.JPG,JPEG,PNG</span>
                     <div class="center-align">
                         <button class="btn" style="background-color:#4C4981;">Register</button>
                     </div>
