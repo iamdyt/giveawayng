@@ -2,10 +2,11 @@
 
 
 {% block banner %}
-    <section class="light-green lighten-1 z-depth-1">
-        <div class="row ml-4 mr-8 ">
-            <div class="col l5 m6 s6 white-text mt-2" style="background-color:#4C4981;">
-                {% if session['username']%}
+    <section class="" style="background-color: #00BFA6;">
+        <div class="row ml-4 hide-on-small-only hide-on-med-only  ">
+            <div class="col l4 m6 s6 white-text " >
+                <img src="{{url_for("static", filename="images/svgs/man.png")}}"  class='responsive-img' alt="giveaway">
+                <!-- {% if session['username']%}
                     <h4> Howdy, {{ session['username'] }} ! </h4>
                     <p style="text-align: justify; font-size:larger;">At GiveawayNG, we believe little sacrifices of unused items from distinguished like you
                     can go a long way to bless the needy, thereby making the world a better place, as it is said "What matter most is the number of lives we touch", this is our own way of 
@@ -16,10 +17,22 @@
                     <p style="text-align: justify; font-size:larger;">At GiveawayNG, we believe little sacrifices of unused items from distinguished people
                     can go a long way to bless the needy, thereby making the world a better place, as it is said "What matter most is the number of lives we touch", this is our own way of 
                     way of touching lives. Bless someone by becoming part of us, be blessed by exploring all the benefits below &downarrow;</p>
-                {% endif %}  
+                {% endif %}   -->
             </div>
-            <div class="col l6 offset-l1 m6 s6 yellow lighten-2">
-                <img src="{{url_for("static", filename="images/svgs/giftboxtwo.svg")}}"  class=' hoverable responsive-img' alt="giveaway">
+            <div class="col l4">
+                <div style="margin-top: 6rem;">
+                    <h6 class="center-align white-text">Find Unused Items in <span class='chip'>All Nigeria</span> </h6>
+                    <form action="">
+                        <div style="display: inline-flex;">
+                            
+                            <input type="text" style="width: 22rem; height: 3.6rem; " placeholder="Type your search here" class="browser-default" name="" id="">
+                            <button class="btn btn-large yellow lighten-1 blue-text text-darken-4">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col l4  m6 s6">
+                <img src="{{url_for("static", filename="images/svgs/girls.png")}}"  class='responsive-img' style="margin-top: 2rem; margin-right: 6rem;"  alt="giveaway">
             </div>
         </div>
     </section>
@@ -27,29 +40,27 @@
     <!-- categories -->
     <section>
         <div class="row ml-4 mr-4">
-            <div class="col l4 ">
+            <div class="col l3 s12 m10 ">
                 <ul class="collection z-depth-1">
                     {% for cat in categories %}
                         <li class="collection-item">
-                            {{cat.name}}
+                           <i class="material-icons grey-text text-darken-2">{{cat.icon | safe }}</i> {{cat.name}}
                         </li>
                     {% endfor%}
                     </ul>
             </div>
-            <div class="col l8 ">
+            <div class="col l8 m10 ">
               <div class="row">
                 {% for ben in benefits %}
-                  <div class="col l3">
+                  <div class="col l3 m6">
                     <div class="card">
-                        <p class="white-text center-align light-green lighten-1">{{ben.status | upper}}</p>
                         <div class="card-image">
-                            <img src="{{url_for("static", filename="images/svgs/giftboxone.svg")}}"  class=" alt="">
+                            <img src="{{url_for("static", filename="images/")}}{{ben.thumbone}}"  class=" alt="">
                         </div>
                         <div class="card-content">
                             <p>{{ben.title}}</p> 
                             <div class="divider"></div>
-                            <p>{{ben.state.name}}</p>
-                            <p>{{ ben.created_at}}</p>
+                            <p>{{ben.state.name}} state</p>
                         </div>
                     </div>
                     

@@ -26,6 +26,7 @@ class Category(db.Model):
     __tablename__  = "categories"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=True)
+    icon = db.Column(db.String(20), default="&CircleDot;")
     benefit = db.relationship('Benefit', backref='category')
 
 class State(db.Model):
@@ -39,8 +40,10 @@ class Benefit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50),nullable=False)
     desc = db.Column(db.Text(800), nullable=False)
-    status = db.Column(db.String(8),default='active')
     moderation = db.Column(db.Integer,default=0)
+    thumbone = db.Column(db.String(50),nullable=False)
+    thumbtwo = db.Column(db.String(50),nullable=False)
+    thumbthree = db.Column(db.String(50),nullable=False)
     cat_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     state_id = db.Column(db.Integer, db.ForeignKey('states.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

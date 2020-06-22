@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/materialize.min.css")}}">
     <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/giveaway.css")}}">  
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title> {% block title %}GiveawayNg{% endblock %} </title>
     
 </head>
-<body>
+<body class="grey lighten-3">
     <header>
-        <nav class="light-green darken-1 z-depth-0">
-            <div class="nav-wrapper" ">
-              <a href="/" class="ml-4" style="font-weight:400; font-size:1.3rem;">GiveawayNG</a>
+        <nav class=" z-depth-1" style="background-color: #00BFA6;">
+            <div class="nav-wrapper z-depth-1" >
+              <a href="/" class="ml-4" style="font-weight:400; font-size:1.3rem;">  GiveawayNG</a>
               <a href="#" data-target="mobile" class="sidenav-trigger">menu</a>
               <ul class="right hide-on-med-and-down mr-8" >
                 {% if session['username'] %}
@@ -57,6 +58,7 @@
         $(()=>{
             $('.sidenav').sidenav();
             $('.counter').characterCounter();
+            $('select').formSelect();
         })
     </script>
     {% block scripty %}{% endblock %}

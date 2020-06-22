@@ -1,0 +1,47 @@
+{% extends "./layout.html" %}
+
+{% block title %} Edit Benefit {% endblock %}
+{% block body %}
+    <section class="container" style="margin-top: 3rem;">
+       
+        <div class="row card-panel">
+            <div class="col l6 ">
+                <form action="{{url_for("benefits.edit", id=benefits.id)}}" method="post">
+                    <input type="text" required name="title" value="{{benefits.title}}" class='input-field' placeholder="Title e.g Unused Sony Laptop" id="">
+                    <select required name="category" id="" class="input-field">
+                        <option value="">Choose Category</option>
+                        {% for cat in categories %}
+                        <option value="{{cat.id}}">{{cat.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <select required name="state" id="" class="input-field">
+                        <option value="">Choose State</option>
+                        {% for state in states %}
+                        <option value="{{state.id}}">{{state.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <textarea required name="description" class ='materialize-textarea' id="" cols="40" placeholder="The description of the item goes here" rows="10">{{benefits.desc}}</textarea>
+                    <div class="center-align">
+                        <button style="background-color:#4C4981;" class="btn">Update</button>
+                    </div>
+                </form>
+            </div>
+            <!-- images -->
+            <div class="col l3">
+                <img src="{{url_for("static", filename="images")}}/{{benefits.thumbone}}" class="responsive-img" alt="">
+                <img src="{{url_for("static", filename="images")}}/{{benefits.thumbtwo}}" class="responsive-img" alt="">
+            </div>
+            <!-- Warning -->
+            <div class="col l3">
+                <blockquote class="">
+                    <span>NOTICE</span>
+                    <p>- The two Images displayed out of three is for identity only and cannot be changed.</p>
+                    <p>- Endeavour to rechoose the category and state of the item.</p>
+                    <p>- Click "Update Button" to save.</p>
+
+                </blockquote>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

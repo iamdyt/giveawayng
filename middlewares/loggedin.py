@@ -9,3 +9,12 @@ def loginrequired(func):
         else:
             return func()
     return isloggedin
+
+def signinrequired(func):
+    @wraps(func)
+    def signin():
+        if not session:
+            return redirect(url_for('accounts.account'))
+        else:
+            return func()
+    return signin

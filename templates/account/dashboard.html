@@ -9,29 +9,52 @@
                 <div class="card">
                     <div class="card-image">
                         <img src="{{ url_for( "static",filename='images/' )}}{{user.thumb}}" alt="{{user.username}}" class="responsive-img circle">
+                            <a href="{{ url_for("benefits.get_create") }}" style="font-weight: bolder; font-size: xx-large;" class=" red darken-4 pulse hoverable halfway-fab large waves-effect waves-light btn-floating center-align">+</a> 
                     </div>
                     <div class="card-content">
                         <p>{{user.username}}</p><div class="divider"></div>
                         <small>{{user.email}}</small><div class="divider"></div>
-                        <p>{{user.phone}}</p><div class="divider"></div>
-                        <p>{{user.whatsapp}}</p>
+                        <p>{{user.phone}} <small>(Mobile)</small> </p><div class="divider"></div>
+                        <p>{{user.whatsapp}} <small>(Chat)</small> </p>
                     </div>
                     <div class="card-action">
-                      <div class="center-align">
+                      <div class="left-align">
                         <button class="btn waves-effect waves-light" style="background-color:#4C4981;">Edit Details</button>
+                        
                       </div>
                     </div>
                 </div>
             </div>
-            <div class="col l3">
-                <div class="collection">
-                    <ul>
-                        <li class="collection-item"><a>All Benefits</a></li>
-                        <li class="collection-item"> <a href="">New Benefit</a></li>
-                        <li class="collection-item"> <a href="">User's Profile</a></li>
-                        
-                    </ul>
-                </div>
+            <!-- items you posted -->
+            <div class="col l9">
+              {% if benefits %}
+                <table class="striped">
+                    <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Category</th>
+                          <th>Date</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                    {% for ben in benefits %}
+                      <tr>
+                        <td>{{ben.title | truncate(19)}}</td>
+                        <td>{{ben.category.name}}</td>
+                        <td>{{ben.created_at}} </td>
+                        <td><a href="{{url_for("benefits.edit", id=ben.id  )}}" class="btn blue darken-5 btn-small"> Edit </a></td>
+                        <td><a href="{{url_for("benefits.delete", id=ben.id  )}}" class="btn red darken-5 btn-small"> Delete </a></td>
+                      </tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                  </table>
+                {% else%}
+                <h5 class="center-align">Nothing to show <br> Click the red FAB to start</h5>
+                {% endif %}
             </div>
         </div>
     </section>

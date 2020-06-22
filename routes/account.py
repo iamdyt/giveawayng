@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect,request,session,url_for,flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.models import User,db
+from models.models import User,db,Benefit
 from middlewares.loggedin import loginrequired
 import os
 
@@ -28,6 +28,7 @@ def account():
         db.session.commit()
         return redirect('/')
     else:
+        
         return render_template('account/account.html')
 
 @accounts.route('/login', methods=['POST'])
@@ -54,9 +55,10 @@ def login():
 def dashboard():
     try:
         if session['id']:
+            benefits = Benefit.query.filter_by(user_id=session['id']).all()
             user = User.query.filter_by(id=session['id']).first()
             if user:
-                return render_template('account/dashboard.html', user=user)
+                return render_template('account/dashboard.html', user=user, benefits=benefits)
     except KeyError:
         return redirect(url_for('accounts.account'))
 
