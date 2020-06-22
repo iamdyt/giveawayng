@@ -61,6 +61,13 @@ def edit(id):
       db.session.commit()
     return redirect(url_for('accounts.dashboard'))
 
+
+@benefits.route('/single/<string:slug>', methods=['GET'])
+def single(slug):
+    single_item = Benefit.query.filter_by(slug=slug).first()
+    cat = Category.query.all()
+    return render_template('benefits/single.html', item=single_item, categories=cat )
+
 @benefits.route('/delete/<int:id>', methods=['GET'])
 
 def delete(id):

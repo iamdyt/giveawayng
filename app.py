@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Blueprint registering
 app.register_blueprint(indexB)
 app.register_blueprint(accounts, url_prefix='/user')
-app.register_blueprint(benefits,url_prefix='/user')
+app.register_blueprint(benefits,url_prefix='/item')
 
 # Database Connection & Session
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root@localhost/flasky"
@@ -27,4 +27,5 @@ db.init_app(app)
 # db.create_all(app=app)  
 
 if __name__ == "__main__":
+    
     app.run(debug=True)

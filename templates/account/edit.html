@@ -7,7 +7,7 @@
         <div class="row card-panel">
             <div class="col l6 ">
                 <form action="{{url_for("benefits.edit", id=benefits.id)}}" method="post">
-                    <input type="text" required name="title" value="{{benefits.title}}" class='input-field' placeholder="Title e.g Unused Sony Laptop" id="">
+                    <input type="text" required name="title" maxlength="30" value="{{benefits.title}}" class='input-field' placeholder="Title e.g Unused Sony Laptop" id="">
                     <select required name="category" id="" class="input-field">
                         <option value="">Choose Category</option>
                         {% for cat in categories %}

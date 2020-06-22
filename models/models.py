@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import uuid
 
 # instance
 db = SQLAlchemy()
@@ -44,6 +45,7 @@ class Benefit(db.Model):
     thumbone = db.Column(db.String(50),nullable=False)
     thumbtwo = db.Column(db.String(50),nullable=False)
     thumbthree = db.Column(db.String(50),nullable=False)
+    slug = db.Column(db.String(50), default=uuid.uuid4(), nullable=True)
     cat_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     state_id = db.Column(db.Integer, db.ForeignKey('states.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

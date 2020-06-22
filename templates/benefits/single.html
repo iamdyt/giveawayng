@@ -1,0 +1,100 @@
+{% extends "./layout.html" %}
+
+{%block title%} {{item.title}} {% endblock%}
+{% block banner %}
+    <section class="" style="background-color: #00BFA6;">
+        <div class="row ml-4 hide-on-small-only hide-on-med-only  ">
+            <div class="col l4 m6 s6 white-text " >
+                <img src="{{url_for("static", filename="images/svgs/man.png")}}"  class='responsive-img' alt="giveaway">
+            </div>
+            <div class="col l4">
+                <div style="margin-top: 6rem;">
+                    <h6 class="center-align white-text">Find Unused Items in <span class='chip'>All Nigeria</span> </h6>
+                    <form action="">
+                        <div style="display: inline-flex;">
+                            
+                            <input type="text" style="width: 22rem; height: 3.6rem; " placeholder="Type your search here" class="browser-default" name="" id="">
+                            <button class="btn btn-large yellow lighten-1 blue-text text-darken-4">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col l4  m6 s6">
+                <img src="{{url_for("static", filename="images/svgs/girls.png")}}"  class='responsive-img' style="margin-top: 2rem; margin-right: 6rem;"  alt="giveaway">
+            </div>
+        </div>
+    </section>
+
+    <!-- categories -->
+    <section>
+        <div class="row ml-4 mr-4">
+            <div class="col l3 s12 m10 ">
+                <ul class="collection z-depth-1">
+                    {% for cat in categories %}
+                        <li class="collection-item">
+                           <i class="material-icons grey-text text-darken-2">{{cat.icon | safe }}</i> {{cat.name}}
+                        </li>
+                    {% endfor%}
+                    </ul>
+            </div>
+            <div class="col l9 m10 ">
+              <div class="row">
+                  <!-- Item description -->
+                  <div class="col l7 m6 card-panel">
+                    <div class="">
+                        <div class="slider">
+                            <ul class="slides">
+                              <li>
+                                <img class="materialboxed" src="{{url_for("static", filename="images/")}}{{item.thumbone}}"> 
+                              </li>
+                              <li>
+                                <img class="materialboxed" src="{{url_for("static", filename="images/")}}{{item.thumbtwo}}"> 
+                              </li>
+                              <li>
+                                <img class="materialboxed" src="{{url_for("static", filename="images/")}}{{item.thumbthree}}"> <!-- random image -->
+                              </li>
+                            </ul>
+                          </div>
+                          <h5>{{item.title}}</h5>
+                          <small>Posted {{item.created_at}},&nbsp; {{item.state.name}}, Nigeria</small>
+                          <div class="divider"></div>
+                          <h5>Item Description</h5>
+                          <p class="justify-text">{{item.desc}}</p>
+                    </div>
+                  </div>
+                  <!-- other info -->
+                  <div class="col l5">
+                      <!-- first-item -->
+                    <div class="card-panel">
+                        <div class="center-align">
+                            <img src="{{url_for("static", filename="images/")}}{{item.user.thumb}}" width="100" class=" circle responsive-img" alt="poster-image">
+                            <h5>{{item.user.username}}</h5>
+                        </div>
+                        <div class="divider"></div>
+                        <span class="blue-text text-darken-4">{{item.user.created_at}}</span>&emsp;<span class="blue-text text-darken-4">{{item.user.created_at}}</span> <br>
+                        <span>Registered</span> &emsp;&emsp; &emsp;&emsp; &emsp; <span>Last seen</span>
+                        <div class="divider"></div>
+                        <div class="center-align">
+                            <button class="btn-large" style="margin-top: 1rem; width: 20rem;">{{item.user.phone}}</button>
+                        </div>
+
+                        <div class="center-align">
+                            <a href="https://api.whatsapp.com/send?phone=234{{item.user.whatsapp}}&text=Hello,%Im%20Interested%20in%20the%20item." class="btn-large yellow blue-text text-darken-4" style="margin-top: 1rem; width: 20rem;">whatsapp Chat</a>
+                        </div> <br>
+                        <div class="divider"></div>
+                        <h5 class="center-align">SAFETY TIPS</h5>
+                        <ol style="list-style-type: square;">
+                            <li>Ask necessary questions before meeting.</li>
+                            <li>Both parties should be entouraged by friends or relatives.</li>
+                            <li>Check the item inside-out before parting.</li>
+                            <li>Try to meet at a safe, public location</li>
+                            <li>Immediately, take your leave if you suspect anything unusual.</li>
+
+                        </ol>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
