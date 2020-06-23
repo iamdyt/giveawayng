@@ -10,16 +10,14 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique=True)
-    phone = db.Column(db.String(11), unique=True)
-    whatsapp = db.Column(db.String(11), unique=True)
+    phone = db.Column(db.String(11))
+    whatsapp = db.Column(db.String(11))
     password = db.Column(db.String(400), nullable=False)
     email = db.Column(db.String(25), nullable=False)
     thumb = db.Column(db.String(25))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow())
     benefit = db.relationship('Benefit', backref='user')
-    timetrack = db.relationship('Timetrack', backref='user')
-    created_at = db.Column(db.String(20), default= datetime.utcnow())
-
-
+    created_at = db.Column(db.DateTime, default= datetime.utcnow())
     def __repr__(self):
         return self.username
 
@@ -49,9 +47,5 @@ class Benefit(db.Model):
     cat_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     state_id = db.Column(db.Integer, db.ForeignKey('states.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    created_at = db.Column(db.String(20), default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-class Timetrack(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    seen = db.Column(db.String(15))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

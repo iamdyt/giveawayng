@@ -39,6 +39,7 @@
             </div>
             <div class="col l8 m10 ">
               <div class="row">
+                {% if benefits %}
                 {% for ben in benefits %}
                   <div class="col l3 m6">
                     <a href="{{url_for("benefits.single", slug=ben.slug)}}">
@@ -55,6 +56,10 @@
                     </a>
                   </div>
                   {% endfor %}
+
+                  {% else %}
+                  <h4 class="center-align grey-text">The Database is Currently empty, please register as a user to add an item</h4>
+                  {% endif %}
               </div>
             </div>
         </div>

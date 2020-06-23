@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/materialize.min.css")}}">
     <link rel="stylesheet" href="{{url_for("static", filename="materialize/css/giveaway.css")}}">  
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title> {% block title %}GiveawayNg{% endblock %} </title>
     
@@ -54,6 +55,7 @@
 
     <script src="{{url_for("static", filename="materialize/jquery.min.js")}}"></script>
     <script src="{{url_for("static", filename="materialize/js/materialize.min.js")}}"></script>
+    <script src="{{url_for("static", filename="materialize/js/moment.js")}}"></script>
     <script>
         $(()=>{
             $('.sidenav').sidenav();
@@ -63,6 +65,7 @@
             $('.materialboxed').materialbox();
         })
     </script>
-    {% block scripty %}{% endblock %}
+   
+     {{ moment.include_moment() }}
 </body>
 </html>

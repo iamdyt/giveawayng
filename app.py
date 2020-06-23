@@ -3,12 +3,20 @@ from routes.index import indexB
 from models.models import db
 from routes.account import accounts
 from routes.benefit import benefits
+from flask_moment import Moment
+
+
 
 
 
 # Registering Package  Instance
 app = Flask(__name__)
+moment = Moment(app)
+moment.init_app(app)
 
+# @app.template_filter('humanize')
+# def humanize(value):
+#     return datetime.strftime(date(int(value)))
 
 # Blueprint registering
 app.register_blueprint(indexB)

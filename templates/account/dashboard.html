@@ -44,7 +44,7 @@
                       <tr>
                         <td>{{ben.title | truncate(19)}}</td>
                         <td>{{ben.category.name}}</td>
-                        <td>{{ben.created_at}} </td>
+                        <td>{{moment(ben.created_at).calendar()}} </td>
                         <td><a href="{{url_for("benefits.edit", id=ben.id  )}}" class="btn blue darken-5 btn-small"> Edit </a></td>
                         <td><a href="{{url_for("benefits.delete", id=ben.id  )}}" class="btn red darken-5 btn-small"> Delete </a></td>
                       </tr>

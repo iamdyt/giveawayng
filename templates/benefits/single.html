@@ -71,7 +71,7 @@
                             <h5>{{item.user.username}}</h5>
                         </div>
                         <div class="divider"></div>
-                        <span class="blue-text text-darken-4">{{item.user.created_at}}</span>&emsp;<span class="blue-text text-darken-4">{{item.user.created_at}}</span> <br>
+                        <span class="blue-text text-darken-4">{{moment(item.user.created_at).calendar()}}</span>&emsp;<span class="blue-text text-darken-4">&emsp;&emsp;{{moment(item.user.last_seen).fromNow()}}</span> <br>
                         <span>Registered</span> &emsp;&emsp; &emsp;&emsp; &emsp; <span>Last seen</span>
                         <div class="divider"></div>
                         <div class="center-align">
@@ -79,7 +79,7 @@
                         </div>
 
                         <div class="center-align">
-                            <a href="https://api.whatsapp.com/send?phone=234{{item.user.whatsapp}}&text=Hello,%Im%20Interested%20in%20the%20item." class="btn-large yellow blue-text text-darken-4" style="margin-top: 1rem; width: 20rem;">whatsapp Chat</a>
+                            <a href="https://api.whatsapp.com/send?phone=234{{item.user.whatsapp.lstrip('0')}}&text=Hello,%Im%20Interested%20in%20the%20item." class="btn-large yellow blue-text text-darken-4" style="margin-top: 1rem; width: 20rem;">whatsapp Chat</a>
                         </div> <br>
                         <div class="divider"></div>
                         <h5 class="center-align">SAFETY TIPS</h5>

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect,request,session,url_for,f
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.models import User,db,Benefit
 from middlewares.loggedin import loginrequired
-import os
+import os, datetime
 
 
 accounts = Blueprint("accounts", __name__)
@@ -24,9 +24,10 @@ def account():
         else:
            pass
         user = User(username=username,password=password,phone=phone,whatsapp=whatsapp,email=email,thumb=str(image.filename))
+        
         db.session.add(user)
         db.session.commit()
-        return redirect('/')
+        return redirect(url_for('accounts.account'))
     else:
         
         return render_template('account/account.html')
@@ -64,7 +65,9 @@ def dashboard():
 
 @accounts.route("/logout", methods=['GET'])
 def logout():
-    request.files
+    user = User.query.get(session['id'])
+    user.last_seen = datetime.datetime.utcnow()
+    db.session.commit()
     session.pop('id')
     session.pop('username')
     return redirect('/')
