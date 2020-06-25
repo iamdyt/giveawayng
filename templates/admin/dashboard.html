@@ -1,0 +1,72 @@
+{% extends "./layout.html" %}
+
+{% block title %} Dashboard {% endblock %}
+{% block body %}
+    <section class="" style="margin: 3rem 2rem 0 2rem;">
+       
+        <div class="row card-panel">
+            <div class="col l2">
+               <ul class="collection">
+                <li class="collection-item">DASHBOARD</li>
+                 <li class="collection-item"><a href="{{url_for('admin.dashboard')}}">All Items</a></li>
+                 <li class="collection-item"><a href="{{url_for('admin.get_state')}}">States</a></li>
+                 <li class="collection-item"><a href="{{url_for('admin.get_cats')}}">Categories</a></li>
+               </ul>
+            </div>
+            <!-- items you posted -->
+            <div class="col l9">
+              {% if benefits %}
+                <table class="striped">
+                    <thead>
+                      <tr>
+                          <th>Item Name</th>
+                          <th>Category</th>
+                          <th>State</th>
+                          <th>Author</th>
+                          <th>Moderation Status</th>
+                          <th>Date Posted</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                    {% for ben in benefits %}
+                      <tr>
+                        <td>{{ben.title | truncate(19)}}</td>
+                        <td>{{ben.category.name}}</td>
+                        <td>{{ben.state.name}}</td>
+                        <td>{{ben.user.username}}</td>
+                        <td>
+                            <form action="{{url_for('admin.moderate')}}" method="POST">
+                              <input type="hidden" name="id" value="{{ben.id}}">
+                              <select name="status" required>
+                              {% if ben.moderation == 0 %}
+                                <option value="0" class="red">Unapproved</option> <hr>
+                              {% else %}
+                                <option value="1" class="teal">Approved</option><hr>
+                              {% endif %}
+                              <option value="1"> Approve </option>
+                              <option value="0">Disapprove</option>
+                              </select>
+                              <div class="center-text">
+                                <button style="margin-left: 2rem; background-color: teal; color: white; border: thin;" class="">Moderate</button>
+                              </div>
+                          </form>
+                      </td>
+                        <td>{{moment(ben.created_at).calendar()}} </td>
+                        <td><a href="{{url_for("admin.edit", id=ben.id  )}}" class="btn blue darken-5 btn-small"> Edit </a></td>
+                        <td><a href="{{url_for("admin.delete", id=ben.id  )}}" class="btn red darken-5 btn-small"> Delete </a></td>
+                      </tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                  </table>
+                {% else%}
+                <h5 class="center-align">Nothing to show </h5>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

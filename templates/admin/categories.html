@@ -1,0 +1,42 @@
+{% extends "./layout.html" %}
+
+{% block title %} Categories {% endblock %}
+{% block body %}
+    <section class="" style="margin: 3rem 2rem 0 2rem;">
+       
+        <div class="row card-panel">
+            <div class="col l2">
+               <ul class="collection">
+                <li class="collection-item">DASHBOARD</li>
+                 <li class="collection-item"><a href="{{url_for('admin.dashboard')}}">All Items</a></li>
+                 <li class="collection-item"><a href="{{url_for('admin.get_state')}}">States</a></li>
+                 <li class="collection-item"><a href="{{url_for('admin.get_cats')}}">Categories</a></li>
+               </ul>
+            </div>
+            <!-- items you posted -->
+            <div class="col l9">
+              <div class="row">
+                <div class="col l9">
+                  {% if cats %}
+                    {% for cat in cats %}
+                      <span class="chip">{{cat.name}} &nbsp; <a href="{{url_for('admin.remove_cat',id=cat.id)}}" class="red-text"> X</a></span>
+                    {% endfor %}
+                  {% else %}
+                    <h5>No Category Added</h5>  
+                  {% endif %}
+                </div>
+
+                <!-- Add Categories -->
+                <div class="col l3">
+                  <form action="{{url_for('admin.post_cat')}}" method="POST">
+                    <input type="text" required name="cat" placeholder="Category Name" class="input-field" id="">
+                    <input type="text" required name="icon" placeholder="Material Design Icon Name" class="input-field" id="">
+                    <button class="btn">Add Category</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

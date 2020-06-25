@@ -44,6 +44,7 @@ def login():
                 if checked:
                     session['id'] = uservar.id
                     session['username'] = uservar.username
+                    session['role'] = 'user'
                     return redirect(url_for('accounts.dashboard'))
                 else:
                     return "Password doesnt match"

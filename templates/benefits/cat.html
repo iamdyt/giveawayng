@@ -1,6 +1,6 @@
 {% extends "./layout.html" %}
 
-
+{% block title %} {{cat.name}} {% endblock %}
 {% block banner %}
     <section class="" style="background-color: #00BFA6;">
         <div class="row ml-4 hide-on-small-only hide-on-med-only  ">
@@ -58,7 +58,7 @@
                   {% endfor %}
 
                   {% else %}
-                  <h4 class="center-align grey-text">The Database is Currently empty, please register as a user to add an item</h4>
+                  <h4 class="center-align grey-text">This Section is Currently empty, please register as a user to add an item</h4>
                   {% endif %}
               </div>
             </div>

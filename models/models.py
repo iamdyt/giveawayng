@@ -49,3 +49,11 @@ class Benefit(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
+class Admin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(15), unique=True)
+    password = db.Column(db.String(400), nullable=False)
+    phone = db.Column(db.String(11))
+    email = db.Column(db.String(25), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+

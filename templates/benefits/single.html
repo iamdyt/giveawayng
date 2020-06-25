@@ -32,7 +32,7 @@
                 <ul class="collection z-depth-1">
                     {% for cat in categories %}
                         <li class="collection-item">
-                           <i class="material-icons grey-text text-darken-2">{{cat.icon | safe }}</i> {{cat.name}}
+                           <i class="material-icons grey-text text-darken-2"> <a class='grey-text text-darken-2'  href="{{url_for('benefits.category',categ=cat.name)}}">{{cat.icon | safe }}</i> {{cat.name}}</a>
                         </li>
                     {% endfor%}
                     </ul>
@@ -56,7 +56,7 @@
                             </ul>
                           </div>
                           <h5>{{item.title}}</h5>
-                          <small>Posted {{item.created_at}},&nbsp; {{item.state.name}}, Nigeria</small>
+                          <small>Posted {{moment(item.created_at).calendar()}},&nbsp; {{item.state.name}}, Nigeria &nbsp; Section: {{item.category.name}}</small>
                           <div class="divider"></div>
                           <h5>Item Description</h5>
                           <p class="justify-text">{{item.desc}}</p>

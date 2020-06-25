@@ -1,0 +1,44 @@
+{% extends "./layout.html" %}
+
+{% block title%} Administrative Area {% endblock %}
+
+{% block body %}
+    <section class="container">
+        {% for message in get_flashed_messages()%}
+            <h6 class="blue white-text center-text" style="padding: 0.5rem;">{{message}}</h6>
+        {% endfor %}
+        <div class="row" style="margin-top: 6rem;">
+            <!-- Sign Up -->
+            <div class="col l6">
+            
+                <h6>Register New Administrator</h6>
+                <form action="{{url_for("admin.post_register")}}" method="POST">
+                    <label for="username"> USERNAME<input type="text" required maxlength="15" class=' validate input-field counter' name="username" data-length="15" placeholder="Enter username"></label>
+                    <input type="email" class='input-field counter' required maxlength="25" name="email" data-length="25" placeholder="Valid E-mail">
+                    <input type="text" class='input-field' required maxlength="11" name="phone" placeholder="Mobile 080XXXXXXXX">
+                    <input type="password" class='input-field' required name="password" placeholder="Password">
+                    <div class="center-align">
+                        <button class="btn" style="background-color:#4C4981;">Register</button>
+                    </div>
+                    
+                </form>
+            </div>
+
+          
+             <!-- Sign In -->
+             <div class="col l4 offset-l2 ">
+                <h6> Administrator Login</h6>
+                <p> &CircleDot; Endeavour to fill the fields below apt</p>
+                <form action="{{url_for("admin.post_login")}}" method="POST">
+                    <label for="username"> USERNAME<input type="text" required maxlength="15" class='input-field counter' name="lusername" data-length="15" placeholder="Enter username"></label>
+                    <input type="password" style="margin: 1rem 0 2rem 0;" class='input-field' required name="lpassword" placeholder="Password">
+                    <div class="center-align">
+                        <button class="btn" style="background-color:#4C4981;">Login</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

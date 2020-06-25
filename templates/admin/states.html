@@ -1,0 +1,41 @@
+{% extends "./layout.html" %}
+
+{% block title %} States {% endblock %}
+{% block body %}
+    <section class="" style="margin: 3rem 2rem 0 2rem;">
+       
+        <div class="row card-panel">
+            <div class="col l2">
+               <ul class="collection">
+                <li class="collection-item">DASHBOARD</li>
+                 <li class="collection-item"><a href="{{url_for('admin.dashboard')}}">All Items</a></li>
+                 <li class="collection-item"><a href="{{url_for('admin.get_state')}}">States</a></li>
+                 <li class="collection-item"><a href="{{url_for('admin.get_cats')}}">Categories</a></li>
+               </ul>
+            </div>
+            <!-- items you posted -->
+            <div class="col l9">
+              <div class="row">
+                <div class="col l9">
+                  {% if states %}
+                    {% for state in states %}
+                      <span class="chip">{{state.name}} &nbsp; <a href="{{url_for('admin.remove_state',id=state.id)}}" class="red-text"> X</a></span>
+                    {% endfor %}
+                  {% else %}
+                    <h5>No State Added</h5>  
+                  {% endif %}
+                </div>
+
+                <!-- Add State -->
+                <div class="col l3">
+                  <form action="{{url_for('admin.post_state')}}" method="POST">
+                    <input type="text" required name="state" placeholder="State Name" class="input-field" id="">
+                    <button class="btn">Add State</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

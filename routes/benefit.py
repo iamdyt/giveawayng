@@ -68,8 +68,14 @@ def single(slug):
     cat = Category.query.all()
     return render_template('benefits/single.html', item=single_item, categories=cat )
 
-@benefits.route('/delete/<int:id>', methods=['GET'])
+@benefits.route('/category/<string:categ>', methods=['GET'])
+def category(categ):
+    categories = Category.query.all()
+    cat = Category.query.filter_by(name=categ).first()
+    bencat = Benefit.query.filter_by(cat_id=cat.id).all()
+    return render_template('benefits/cat.html', benefits=bencat, categories=categories, cat=cat)
 
+@benefits.route('/delete/<int:id>', methods=['GET'])
 def delete(id):
     if session:
         bene = Benefit.query.get(id)
