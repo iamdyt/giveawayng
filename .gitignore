@@ -1,2 +1,4 @@
 __pycache__
 mysql://b363042b9833fd:6a239893@us-cdbr-east-02.cleardb.com/heroku_9da55108e046c0b?reconnect=true
+
+mysql -u b363042b9833fd -h us-cdbr-east-02.cleardb.com -p heroku_9da55108e046c0b < flasky.sql
