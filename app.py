@@ -26,7 +26,8 @@ app.register_blueprint(benefits,url_prefix='/item')
 app.register_blueprint(admin, url_prefix='/enter/administrator')
 
 # Database Connection & Session
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root@localhost/flasky"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root@localhost/flasky"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://b363042b9833fd:6a239893@us-cdbr-east-02.cleardb.com/heroku_9da55108e046c0b"
 app.config['SECRET_KEY'] = 'pbkdf2:sha256:150000$Ciwc'
 
 # Connecting DB Model to app.py
@@ -38,4 +39,4 @@ db.init_app(app)
 
 if __name__ == "__main__":
     
-    app.run(debug=True)
+    app.run(threaded=True)
