@@ -23,7 +23,7 @@ moment.init_app(app)
 app.register_blueprint(indexB)
 app.register_blueprint(accounts, url_prefix='/user')
 app.register_blueprint(benefits,url_prefix='/item')
-app.register_blueprint(admin, url_prefix='/enter/administrator')
+app.register_blueprint(admin, url_prefix='/admin')
 
 # Database Connection & Session
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root@localhost/flasky"

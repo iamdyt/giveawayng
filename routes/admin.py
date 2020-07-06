@@ -43,7 +43,7 @@ def post_login():
         return redirect(url_for('admin.getaccount'))
 
 @admin.route('/dashboard', methods=['GET'])
-@is_admin
+
 def dashboard():
     benefits = Benefit.query.all()
     return render_template('admin/dashboard.html', benefits=benefits)
@@ -87,7 +87,7 @@ def delete(id):
         return redirect(url_for('admin.getaccount'))
 
 @admin.route('/moderate', methods=['POST'])
-@is_admin
+
 def moderate():
     item_id = request.form['id']
     status = request.form['status']
@@ -98,14 +98,14 @@ def moderate():
 
 # States
 @admin.route('/states', methods=['GET'])
-@is_admin
+
 def get_state():
     states =  State.query.all()
     return render_template('admin/states.html', states=states)
 
 
 @admin.route('/post-state', methods=['POST'])
-@is_admin
+
 def post_state():
     state =  request.form['state']
     states =  State(name=state)
@@ -123,14 +123,14 @@ def remove_state(id):
 # Categories
 
 @admin.route('/categories', methods=['GET'])
-@is_admin
+
 def get_cats():
     cats =  Category.query.all()
     return render_template('admin/categories.html', cats=cats)
 
 
 @admin.route('/post-cat', methods=['POST'])
-@is_admin
+
 def post_cat():
     cat =  request.form['cat']
     icon =  request.form['icon']
@@ -140,7 +140,7 @@ def post_cat():
     return redirect(url_for('admin.get_cats'))
 
 @admin.route('/remove-cat/<int:id>', methods=['GET'])
-@is_admin
+
 def remove_cat(id):
     cat = Category.query.filter_by(id=id).first()
     db.session.delete(cat)
